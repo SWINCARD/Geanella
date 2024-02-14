@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .contenedor {
+            background: cadetblue;
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        p {
+            font-size: 2rem;
+            padding: 15%;
+        }
+
+        button {
+            font-size: 2rem;
+            padding: 1em;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        #yesBtn {
+            transform: translate(-100%, 0);
+        }
+
+        #noBtn {
+            position: absolute;
+            z-index: 1;
+        }
+
+        .yesClicked {
+            background-color: green;
+        }
+
+        .luciernaga {
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 0;
+            animation: luciernagaAnim 5s infinite;
+        }
+
+        @keyframes luciernagaAnim {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <p>¿Quieres ser mi media naranja ?</p>
+        <button id="yesBtn">Si</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        const yesBtn = document.querySelector('#yesBtn');
+        const noBtn = document.querySelector('#noBtn');
+
+        yesBtn.addEventListener('click', function() {
+            alert('Sabía que dirías que Sí, Te quiero bb');
+            yesBtn.classList.add('yesClicked');
+        });
+
+        noBtn.addEventListener('click', function() {
+            const palabrasBonitas = [
+                "Eres increíble",
+                "Tu sonrisa ilumina mi día",
+                "Eres muy especial para mí",
+                "Gracias por estar siempre ahí",
+                "Tienes un corazón hermoso",
+                "Eres un sol en mi vida",
+                "Tu bondad no tiene límites",
+                "Eres mi inspiración",
+                "Tu presencia hace que todo sea mejor",
+                "Eres la razón de mi felicidad",
+                "Contigo cada momento es mágico",
+                "Eres un regalo del cielo",
+                "Tu amor me hace sentir completo",
+                "Eres mi todo"
+            ];
+            const randomIndex = Math.floor(Math.random() * palabrasBonitas.length);
+            noBtn.textContent = palabrasBonitas[randomIndex];
+            noBtn.style.backgroundColor = getRandomColor();
+        });
+
+        // Función para obtener un color aleatorio
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Crear luciérnagas
+        const contenedor = document.querySelector('.contenedor');
+        for (let i = 0; i < 50; i++) {
+            const luciernaga = document.createElement('div');
+            luciernaga.classList.add('luciernaga');
+            luciernaga.style.left = `${Math.random() * 100}vw`;
+            luciernaga.style.top = `${Math.random() * 100}vh`;
+            contenedor.appendChild(luciernaga);
+        }
+    </script>
+</body>
+</html>
